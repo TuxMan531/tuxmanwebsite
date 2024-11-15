@@ -1,0 +1,47 @@
+body {
+    background-color: rgba(255, 255, 255, 0.24);
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.left-column {
+    flex: 1;
+    max-width: 100%; /* Adjust as needed */
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btc-investment {
+    flex: 1;
+    max-width: 300px; /* Adjust as needed */
+}
+
+.new-elements {
+    flex: 1;
+    margin-left: 20px; /* Add some space to the left of the new elements */
+    border-left: 2px solid #000; /* Vertical line to separate columns */
+    padding-left: 20px; /* Add padding to the left of the new elements */
+}
+
+span {
+    background-color: #000000;
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    position: relative; /* Required for positioning the pseudo-element */
+}
