@@ -5,8 +5,12 @@ function sleep(ms) {
 async function getBitcoinPrice() {
     let price1;
     let price2;
-    let amount1Worth
-    let diffrence1
+    let amount1Worth;
+    let amount2Worth;
+    let diffrence1;
+    let diffrence2;
+    let totaltotal;
+    let totaldff;
     // bit coin math
     const response = await fetch('https://api.coindesk.com/v1/bpi/currentprice/BTC.json');
     const data = await response.json();
@@ -16,6 +20,9 @@ async function getBitcoinPrice() {
     price1 = parseFloat(price1.replace(/,/g, ''));
     // DOD coin math
     const response2 = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=dogecoin&vs_currencies=usd');
+    if (response2.status === 429) {
+        sleep(parseInt(response2.headers.get("retry-after")) * 1000);
+    }
     const data2 = await response2.json();
     price2 = data2.dogecoin.usd;
     console.log("doge price: " + price2);
@@ -27,10 +34,14 @@ async function getBitcoinPrice() {
     diffrence1 = amount1Worth - 15;
     diffrence2 = amount2Worth - 20;
 
+    totaltotal = amount1Worth + amount2Worth;
+    totaldff = diffrence1 + diffrence2;
+
     document.getElementById("pl1").innerHTML = "$" + diffrence1.toFixed(3);
     document.getElementById("worth1").innerHTML = "$" + amount1Worth.toFixed(3);
     document.getElementById("worth2").innerHTML = "$" + amount2Worth.toFixed(3);
     document.getElementById("pl2").innerHTML = "$" + diffrence2.toFixed(3);
+    document.getElementById("totalpl").innerHTML = "$" + totaltotal.toFixed(3);
 }
 
 async function startTracking() {
@@ -43,7 +54,7 @@ async function startTracking() {
                 await sleep(1000); /// 1000 = 1 second
                 couuntdown = couuntdown - 1;
             }
-            couuntdown = 10;
+            couuntdown = 20;
         }
     }
 

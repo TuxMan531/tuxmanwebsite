@@ -23,12 +23,12 @@ body {
 
 .btc-investment {
     flex: 1;
-    max-width: 300px; /* Adjust as needed */
+    max-width: 350px; /* Adjust as needed */
 }
 
 .new-elements {
     flex: 1;
-    margin-left: 20px; /* Add some space to the left of the new elements */
+    margin-left: 70px; /* Add some space to the left of the new elements */
     border-left: 2px solid #000; /* Vertical line to separate columns */
     padding-left: 20px; /* Add padding to the left of the new elements */
 }
