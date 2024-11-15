@@ -20,9 +20,6 @@ async function getBitcoinPrice() {
     price1 = parseFloat(price1.replace(/,/g, ''));
     // DOD coin math
     const response2 = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=dogecoin&vs_currencies=usd');
-    if (response2.status === 429) {
-        sleep(parseInt(response2.headers.get("retry-after")) * 1000);
-    }
     const data2 = await response2.json();
     price2 = data2.dogecoin.usd;
     console.log("doge price: " + price2);
@@ -37,11 +34,15 @@ async function getBitcoinPrice() {
     totaltotal = amount1Worth + amount2Worth;
     totaldff = diffrence1 + diffrence2;
 
+    console.log("WORTH AMOUNTS" + amount1Worth + " " + amount2Worth);
+    console.log("TOALAT TOALTA" + totaltotal);
+
     document.getElementById("pl1").innerHTML = "$" + diffrence1.toFixed(3);
     document.getElementById("worth1").innerHTML = "$" + amount1Worth.toFixed(3);
     document.getElementById("worth2").innerHTML = "$" + amount2Worth.toFixed(3);
     document.getElementById("pl2").innerHTML = "$" + diffrence2.toFixed(3);
-    document.getElementById("totalpl").innerHTML = "$" + totaltotal.toFixed(3);
+    document.getElementById("totalpl").innerHTML = "$" + totaldff.toFixed(3);
+    document.getElementById("totalworth").innerHTML = "$" + totaltotal.toFixed(3);
 }
 
 async function startTracking() {
