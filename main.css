@@ -45,3 +45,22 @@ span {
     margin: 4px 2px;
     position: relative; /* Required for positioning the pseudo-element */
 }
+a {
+    text-decoration: none; /* Remove underline */
+}
+
+#youtube {
+    color: red; /* Default link color */
+}
+
+#youtube:visited {
+    color: red; /* Visited link color */
+}
+
+#github {
+    color: purple; /* Default link color */
+}
+
+#github:visited {
+    color: purple; /* Visited link color */
+}

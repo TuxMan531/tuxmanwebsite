@@ -34,9 +34,6 @@ async function getBitcoinPrice() {
     totaltotal = amount1Worth + amount2Worth;
     totaldff = diffrence1 + diffrence2;
 
-    console.log("WORTH AMOUNTS" + amount1Worth + " " + amount2Worth);
-    console.log("TOALAT TOALTA" + totaltotal);
-
     document.getElementById("pl1").innerHTML = "$" + diffrence1.toFixed(3);
     document.getElementById("worth1").innerHTML = "$" + amount1Worth.toFixed(3);
     document.getElementById("worth2").innerHTML = "$" + amount2Worth.toFixed(3);
