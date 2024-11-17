@@ -6,25 +6,29 @@ let bitHigh
 let bitLow
 bitHigh = 0;
 bitLow = 0;
-
+bitValuehigh = 0;
+bitValuelow = 0;
+// fetches all time data for btc pl high low and value high low
 async function fetchData() {
     try {
         const response = await fetch('http://localhost:8080/bigdata.json');
         const data = await response.json();
         bitHigh = data.bithigh;
         bitLow = data.bitlow;
+        bitValuehigh = data.bitvaluehigh;
+        bitValuelow = data.bitvaluelow;
     } catch (error) {
         console.error('Error fetching data:', error);
     }
 }
-async function updateData(newHigh, newLow) {
+async function updateData(newHigh, newLow, newvhigh, newvlow) {
     try {
         const response = await fetch('http://localhost:8080/bigdata.json', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ bithigh: newHigh, bitlow: newLow })
+            body: JSON.stringify({ bithigh: newHigh, bitlow: newLow, bitvaluehigh: newvhigh, bitvaluelow: newvlow })
         });
         if (response.ok) {
             console.log('Data updated successfully');
@@ -84,11 +88,17 @@ async function getBitcoinPrice() {
     } else if(bitLow > diffrence1){
         await updateData(bitHigh, diffrence1);
     }
-
+    if(bitValuehigh < amount1Worth){
+        await updateData(bitHigh, bitLow, amount1Worth, bitValuelow);
+    } else if(bitValuelow > amount1Worth){
+        await updateData(bitHigh, bitLow, bitValuehigh, amount1Worth);
+    }
+    
     console.log("gap")
     console.log(bitHigh + "<-- high low -->" + bitLow)
     console.log("btc pl: $" + diffrence1)
-    document.getElementById('jsonout').textContent = "BitHigh: $" + bitHigh.toFixed(3) + " BitLow: $" + bitLow.toFixed(3);
+    document.getElementById('jsonout1').textContent = "BitHigh: $" + bitHigh.toFixed(3) + " BitLow: $" + bitLow.toFixed(3);
+    document.getElementById('jsonout2').textContent = "Bit Value High: $" + bitValuehigh.toFixed(3) + " Bit Value Low: $" + bitValuelow.toFixed(3);
 }
 
 async function startTracking() {
