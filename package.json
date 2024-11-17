@@ -1,0 +1,17 @@
+{
+  "name": "newbitcoin_tracker",
+  "version": "1.0.0",
+  "description": "yeah gang so right now this is just the better version of my crypto tracker from a while back\r website website website website website",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1",
+    "newbitcoin_tracker": "file:"
+  }
+}
