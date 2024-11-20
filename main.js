@@ -23,14 +23,24 @@ async function fetchData() {
 }
 async function updateData(newHigh, newLow, newvhigh, newvlow) {
     try {
-        const response = await fetch('http://localhost:8080/bigdata.json', {
+        // Fetch the existing data
+        const response = await fetch('http://localhost:8080/bigdata.json');
+        const data = await response.json();
+        // Update the necessary fields
+        data.bithigh = newHigh !== undefined ? newHigh : data.bithigh;
+        data.bitlow = newLow !== undefined ? newLow : data.bitlow;
+        data.bitvaluehigh = newvhigh !== undefined ? newvhigh : data.bitvaluehigh;
+        data.bitvaluelow = newvlow !== undefined ? newvlow : data.bitvaluelow;
+        // Write the updated data back to the file
+        const updateResponse = await fetch('http://localhost:8080/bigdata.json', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ bithigh: newHigh, bitlow: newLow, bitvaluehigh: newvhigh, bitvaluelow: newvlow })
+            body: JSON.stringify(data)
         });
-        if (response.ok) {
+
+        if (updateResponse.ok) {
             console.log('Data updated successfully');
             await fetchData();
         } else {
